@@ -1,0 +1,43 @@
+{
+  "name": "react-table-accordion",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Rojas Vargas - Knivek91",
+  "license": "MIT",
+  "lib": {
+    "babel": "6.5.2"
+  },
+  "description": "",
+  "devDependencies": {
+    "babel-cli": "6.5.1",
+    "babel-eslint": "6.0.0",
+    "babel-preset-es2015": "6.5.0",
+    "babel-preset-react": "6.5.0",
+    "babel-preset-stage-3": "6.5.0",
+    "babelify": "7.2.0",
+    "brfs": "1.4.3",
+    "browserify": "13.0.0",
+    "eslint-plugin-react": "3.16.1",
+    "event-stream": "3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-streamify": "1.0.2",
+    "gulp-uglify": "2.1.2",
+    "gulp-uglifycss": "^1.0.8",
+    "lodash": "^4.17.4",
+    "loose-envify": "^1.3.1",
+    "numeral": "^2.0.6",
+    "prop-types": "^15.5.8",
+    "react": "^15.4.2",
+    "react-autobind": "^1.0.6",
+    "react-dom": "^15.4.2",
+    "uglifycss": "0.0.25",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0"
+  }
+}
