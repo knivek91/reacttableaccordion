@@ -9,33 +9,32 @@ import TablePagination from './table-pagination';
 import Header from './header';
 
 Numeral.defaultFormat('$0,0.00');
-const Columns = [{ class: '', value: '' }, { class: '', value: 'Código' }, { class: '', value: 'Nombre' }, { class: '', value: 'Costo' }, { class: '', value: 'Empaque' }, { class: '', value: 'Cantidad' }, { class: '', value: 'Total' }, { class: '', value: '' }];
+const Columns = [{ class: '', value: '' }, { class: '', value: 'Código' }, { class: '', value: 'Nombre' }, { class: '', value: 'Cantidad' }, { class: '', value: 'Descuento' }, { class: '', value: 'Costo' }, { class: '', value: 'Total' }, { class: '', value: '' }];
 
 import Datos from './data'
 
-const Row = ({ target, id, nombre, costo, cantidad, descuento, total, checked, onChange, onChangeCheck }) => (
+const Row = ({ tabIndex, target, id, nombre, costo, cantidad, descuento, total, checked, onChange, onChangeCheck }) => (
     <tr className="open clickable">
-        <td className="details">
+        <td className="checkbox-table">
             <input type="checkbox" id={`chk${id}`} name={`chk${id}`} checked={checked} onChange={() => { onChangeCheck(id) }} />
             <label htmlFor={`chk${id}`}><span></span></label>
         </td>
         <td className="details">{id}</td>
         <td className="details">{nombre}</td>
         <td>
-            <input type="text" className="input-text-table" name="Costo" value={costo} onChange={(e) => { onChange(e, id) }} />
-        </td>
-        <td>
             <div className="quantity">
-                <button type="button" className="plus">+</button>
-                <input type="text" name="Cantidad" value={cantidad} onChange={(e) => { onChange(e, id) }} />
                 <button type="button" className="plus">-</button>
+                <input type="text" name="Cantidad" value={cantidad} onChange={(e) => { onChange(e, id) }} tabIndex={tabIndex-2} />
+                <button type="button" className="plus">+</button>
             </div>
         </td>
         <td>
-            <input type="text" className="input-text-table" name="Descuento" value={descuento} onChange={(e) => { onChange(e, id) }} />
+            <input type="text" className="input-text-table" name="Descuento" value={descuento} onChange={(e) => { onChange(e, id) }} tabIndex={tabIndex - 1}/>
+        </td>
+        <td>
+            <input type="text" className="input-text-table" name="Costo" value={costo} onChange={(e) => { onChange(e, id) }} tabIndex={tabIndex}/>
         </td>
         <td className="details">{Numeral(total).format()}</td>
-
         <td className="details">
             <a data-toggle="collapse" data-target={target}><i className="fa fa-chevron-down"></i></a>
         </td>
@@ -212,7 +211,8 @@ class Table extends React.Component {
     render() {
         const { cantidadOrdenada, cantidadEnviada, paginationsRows, descuento, cubicaje, total, paginationNumber, currentPage, rowNumber } = this.state
         const tableHeaders = <TableHeaders columns={this.state.tableHeaders} />
-        const rows = paginationsRows.map(item => [<Row target={`#${item.Id}`}
+        const rows = paginationsRows.map((item, index) => [<Row target={`#${item.Id}`}
+            tabIndex={ (index + 1) * 3}
             id={item.Id}
             nombre={item.Nombre}
             costo={item.Costo}
@@ -241,13 +241,7 @@ class Table extends React.Component {
                                         onCheckAll={this.onCheckAll} onDelete={this.onDeleteRows}
                                         onPaginationChange={this.onPaginationChange}
                                     />
-
-                                    <TablePagination rowNumber={rowNumber}
-                                        paginationNumber={paginationNumber}
-                                        currentPage={currentPage}
-                                        onClickPageNumber={this.onClickPageNumber}
-                                    />
-
+                                    
                                     <div className="row">
                                         <div className="col-md-12 table-responsive">
                                             <table className="table default-table">

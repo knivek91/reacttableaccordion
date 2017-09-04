@@ -5437,7 +5437,9 @@ input[type="radio"]:checked + label span {
     background:url(../../img/blue.png) -66px top no-repeat;
 }
 
-
+tbody > tr > td.checkbox-table{
+  padding-top: 15px;
+}
 
 /*--------------------------------------------------------------
   ##  Quantity

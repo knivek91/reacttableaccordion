@@ -17,8 +17,11 @@ class Header extends React.Component {
     }
 
     onKeyPress(e) {
-        if (e.which === 13)
+        if (e.which === 13) {
             this.props.onPaginationChange();
+            console.log(e.which);
+        }
+            
     }
 
     render() {
